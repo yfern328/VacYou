@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  vacuum_id: 1
+  emoji_rating: MyString
+
+two:
+  user_id: 1
+  vacuum_id: 1
+  emoji_rating: MyString

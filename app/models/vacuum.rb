@@ -1,0 +1,2 @@
+class Vacuum < ApplicationRecord
+end
