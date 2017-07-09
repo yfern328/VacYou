@@ -3,7 +3,7 @@ class StylesController < ApplicationController
   before_action :set_style, only: [:show, :edit, :update, :delete]
 
   def index
-    @style = Style.all
+    @styles = Style.all
   end
 
   def new
@@ -16,9 +16,11 @@ class StylesController < ApplicationController
   end
 
   def show
+    @style = Style.find(params[:id])
   end
 
   def edit
+    @style = Style.find(params[:id])
   end
 
   def update

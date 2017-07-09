@@ -3,7 +3,7 @@ class VacuumsController < ApplicationController
   before_action :set_vacuum, only: [:show, :edit, :update, :delete]
 
   def index
-    @vacuum = Vacuum.all
+    @vacuums = Vacuum.all
   end
 
   def new
@@ -16,9 +16,11 @@ class VacuumsController < ApplicationController
   end
 
   def show
+    @vacuum = Vacuum.find(params[:id])
   end
 
   def edit
+    @vacuum = Vacuum.find(params[:id])
   end
 
   def update

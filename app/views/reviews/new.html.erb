@@ -1,0 +1,9 @@
+<% form_for @review do |f|%>
+  <%= f.label :user_id%>
+  <%= f.text_field :user_id%>
+  <%= f.label :vacuum_id%>
+  <%= f.text_field :vacuum_id%>
+  <%= f.label :emoji_rating%>
+  <%= f.text_field :emoji_rating%>
+  <%= f.submit %>
+<% end %>

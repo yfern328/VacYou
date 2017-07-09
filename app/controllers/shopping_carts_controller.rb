@@ -3,7 +3,7 @@ class ShoppingCartsController < ApplicationController
   before_action :set_shopping_cart, only: [:show, :edit, :update, :delete]
 
   def index
-    @shopping_cart = ShoppingCart.all
+    @shopping_carts = ShoppingCart.all
   end
 
   def new
@@ -16,9 +16,11 @@ class ShoppingCartsController < ApplicationController
   end
 
   def show
+    @shopping_cart = ShoppingCart.find(params[:id])
   end
 
   def edit
+    @shopping_cart = ShoppingCart.find(params[:id])
   end
 
   def update

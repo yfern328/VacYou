@@ -3,7 +3,7 @@ class ReviewsController < ApplicationController
   before_action :set_review, only: [:show, :edit, :update, :delete]
 
   def index
-    @review = Review.all
+    @reviews = Review.all
   end
 
   def new
@@ -16,9 +16,11 @@ class ReviewsController < ApplicationController
   end
 
   def show
+    @review = Review.find(params[:id])
   end
 
   def edit
+    @review = Review.find(params[:id])
   end
 
   def update

@@ -3,7 +3,7 @@ class RentalsController < ApplicationController
   before_action :set_rental, only: [:show, :edit, :update, :delete]
 
   def index
-    @rental = Rental.all
+    @rentals = Rental.all
   end
 
   def new
@@ -16,9 +16,11 @@ class RentalsController < ApplicationController
   end
 
   def show
+    @rental = Rental.find(params[:id])
   end
 
   def edit
+    @rental = Rental.find(params[:id])
   end
 
   def update
