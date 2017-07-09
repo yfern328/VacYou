@@ -1,5 +1,6 @@
 class ShoppingCart < ApplicationRecord
-
+  belongs_to :user
+  has_many :vacuums
 
   def total
     # tax_rate = x
