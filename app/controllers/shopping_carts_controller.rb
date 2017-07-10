@@ -1,6 +1,7 @@
 class ShoppingCartsController < ApplicationController
 
   before_action :set_shopping_cart, only: [:show, :edit, :update, :delete]
+  before_action :authorize
 
   def index
     @shopping_carts = ShoppingCart.all
