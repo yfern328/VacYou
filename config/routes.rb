@@ -4,6 +4,13 @@ Rails.application.routes.draw do
 
   get "/", to: "application#index", as: "home"
 
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
+
+  get '/signup' => 'users#new'
+  post '/users' => 'users#create'
+
   resources :users, :reviews, :shopping_carts, :vacuums, :styles, :rentals
   # resources :vacuums
   # resources :reviews
