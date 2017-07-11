@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_page
 
   before_action :set_user, only: [:show, :edit, :update, :delete]
-  before_action :authorize
+  #before_action :authorize
 
   def index
     @users = User.all

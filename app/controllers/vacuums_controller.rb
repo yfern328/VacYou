@@ -11,7 +11,9 @@ class VacuumsController < ApplicationController
   end
 
   def create
-    @vacuum = Vacuum.create(vacuum_params)
+    @vacuum = Vacuum.new(vacuum_params)
+    @vacuum.save
+    #byebug
     redirect_to vacuum_path(@vacuum)
   end
 

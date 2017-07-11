@@ -1,4 +1,4 @@
 class Review < ApplicationRecord
   belongs_to :user
-  has_many :vacuums
+  has_one :vacuum
 end

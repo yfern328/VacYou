@@ -3,6 +3,7 @@ class CreateShoppingCarts < ActiveRecord::Migration[5.1]
     create_table :shopping_carts do |t|
       t.integer :user_id
       t.integer :vacuum_id
+      t.boolean :is_purchased
 
       t.timestamps
     end

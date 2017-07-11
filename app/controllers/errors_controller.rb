@@ -1,6 +1,6 @@
 class ErrorsController < ApplicationController
   def error_400
-    byebug
+    #byebug
     render status: :bad_request
   end
 
