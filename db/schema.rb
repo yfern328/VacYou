@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20170710151541) do
   create_table "shopping_carts", force: :cascade do |t|
     t.integer "user_id"
     t.integer "vacuum_id"
-    t.boolean "is_purchased"
+    t.boolean "is_purchased", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

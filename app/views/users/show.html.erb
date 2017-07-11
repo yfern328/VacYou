@@ -5,6 +5,6 @@
 
 <h2>Vacuums</h2>
 
-<% ShoppingCart.all.each do |cart| %>
+<% ShoppingCart.all.select {|cart| cart.user_id == @user.id}.each do |cart| %>
   <li><%= link_to Vacuum.find(cart.vacuum_id).name, vacuum_path(cart.vacuum_id) %></li>
 <% end %>
