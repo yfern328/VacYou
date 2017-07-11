@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
 
+  rescue_from ActiveRecord::RecordNotFound, with: :invalid_page
+
   before_action :set_user, only: [:show, :edit, :update, :delete]
+  before_action :authorize
 
   def index
     @users = User.all
@@ -21,11 +24,15 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
   end
 
   def edit
-    @user = User.find(params[:id])
+    if params[:id] == session[:user_id]
+      @user = User.find(params[:id])
+    else
+      redirect_to bad_request_path
+    end
   end
 
   def update
@@ -46,6 +53,10 @@ class UsersController < ApplicationController
 
     def set_user
       @user = User.find(params[:id])
+    end
+
+    def invalid_page
+      render file: 'errors/error_400.html.erb', status: :bad_request
     end
 
 end

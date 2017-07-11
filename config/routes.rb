@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
 
+  get '/400', to: 'errors#error_400', as: "bad_request"
+  get '/404', to: 'errors#error_404', as: "not_found"
+
   resources :users, :reviews, :shopping_carts, :vacuums, :styles, :rentals
   # resources :vacuums
   # resources :reviews

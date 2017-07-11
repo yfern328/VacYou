@@ -1,11 +1,6 @@
 
 
 <center><h1>Welcome to VacYou</h1></center>
-
-<% if current_user %>
-  Signed in as <%= current_user.name %> | <%= link_to "Logout", '/logout' %>
-<% else %>
-  <%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %>
-<% end %>
+<center><h3>Rent from us and you can go vac yourself!</h3>
 
 <%= yield %>
