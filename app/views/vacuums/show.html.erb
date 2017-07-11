@@ -3,3 +3,10 @@
 <%= @vacuum.purchase_price %>
 <%= @vacuum.rental_stock %>
 <%= @vacuum.purchase_stock %>
+
+<% if !session[:user_id].nil? %>
+  <%= form_tag "/users/#{session[:user_id]}/cart" do%>
+    <%= hidden_field_tag 'vacuum_id', @vacuum.id %>
+    <%= submit_tag "Add to cart" %>
+  <% end %>
+<% end %>

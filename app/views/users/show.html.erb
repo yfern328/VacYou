@@ -1,3 +1,10 @@
 <h1><%= "#{@user.name}'s profile" %></h1>
 
-<h3> <%= collection_select(:rental, :user_id, Rental.all, :id, :name, prompt: "hello") %> </h3>
+
+<!-- <h3> <%= collection_select(:vacuum, :user_id, Vacuum.all, :id, :name, prompt: "Choose a vacuum") %> </h3> -->
+
+<h2>Vacuums</h2>
+
+<% ShoppingCart.all.each do |cart| %>
+  <li><%= link_to Vacuum.find(cart.vacuum_id).name, vacuum_path(cart.vacuum_id) %></li>
+<% end %>

@@ -45,6 +45,13 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
 
+  def added_to_cart
+    set_user
+    @shopping_cart = ShoppingCart.new(user_id: @user.id, vacuum_id: params[:vacuum_id])
+    @shopping_cart.save
+    byebug
+  end
+
     private
 
     def user_params
