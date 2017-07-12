@@ -7,7 +7,11 @@ class ShoppingCart < ApplicationRecord
   end
 
   def self.total(session_user_id)
-    user_carts(session_user_id).map {|cart| cart.vacuum.purchase_price}.reduce(:+)
+    if user_carts(session_user_id).empty?
+      0
+    else
+      user_carts(session_user_id).map {|cart| cart.vacuum.purchase_price}.reduce(:+)
+    end
   end
 
   def self.display_cart(session_user_id)

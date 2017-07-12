@@ -53,6 +53,15 @@ class UsersController < ApplicationController
     redirect_to check_cart_path(@user)
   end
 
+  def removed_from_cart
+    # byebug
+    set_user
+    @cart = ShoppingCart.find_by(vacuum_id: params[:vacuum_id])
+    @cart.destroy
+    @carts = ShoppingCart.display_cart(session[:user_id])
+    redirect_to check_cart_path(@user)
+  end
+
   def check_cart
     @total = ShoppingCart.total(session[:user_id])
     @cart = ShoppingCart.display_cart(session[:user_id])
