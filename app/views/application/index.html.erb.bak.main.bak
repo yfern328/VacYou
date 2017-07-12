@@ -1,0 +1,6 @@
+
+
+<center><h1>Welcome to VacYou</h1></center>
+<center><h3>Rent from us and you can go vac yourself!</h3>
+
+<%= yield %>

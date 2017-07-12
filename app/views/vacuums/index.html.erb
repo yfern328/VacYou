@@ -1,6 +1,16 @@
+<head>
+  <style>
+    body {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+  </style>
+</head>
+
+<h1>Our Vacuums</h1>
 
 <% @vacuums.each do |vacuum|%>
-<h1> <%= vacuum.name %> </h1>
+<h2> <%= vacuum.name %> </h2>
 <%= vacuum.rental_price %>
 <%= vacuum.purchase_price %>
 <%= vacuum.rental_stock %>

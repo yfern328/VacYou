@@ -1,3 +1,14 @@
+<head>
+  <style>
+    body {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+  </style>
+</head>
+
+<h1>Your Cart</h1>
+
 <% @items_hash.each do |k,v| %>
 <li> <%=  "#{k}: #{v}" %> </li>
 <% end %>
