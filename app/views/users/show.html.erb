@@ -14,6 +14,12 @@
 
 <h2>Vacuums</h2>
 
-<% ShoppingCart.display_cart(session[:user_id]).each do |vacuum_name, vacuum_count| %>
-  <li><%= link_to vacuum_name, vacuum_path(Vacuum.find_by(name: vacuum_name)) %> - <%= vacuum_count %></li>
+<% if ShoppingCart.display_cart(@user.id).empty? && @user.id == session[:user_id] %>
+  <p>You have no vacuums...</p>
+<% elsif ShoppingCart.display_cart(@user.id).empty? %>
+  <p>This user has no vacuums...</p>
+<% else %>
+  <% ShoppingCart.display_cart(@user.id).each do |vacuum_name, vacuum_count| %>
+    <li><%= link_to vacuum_name, vacuum_path(Vacuum.find_by(name: vacuum_name)) %> - <%= vacuum_count %></li>
+  <% end %>
 <% end %>

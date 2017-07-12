@@ -9,15 +9,19 @@
 
 <h1>Your Cart</h1>
 
-<% @cart.each do |vacuum_name, vacuum_count| %>
-  <li>
-    <%= link_to vacuum_name, vacuum_path(Vacuum.find_by(name: vacuum_name)) %> - <%= vacuum_count %>  <%= form_tag "/users/#{session[:user_id]}/cart", method: :patch do %>
-    <%= button_tag type: 'submit', class: 'btn btn-danger btn-xs' do %>
-      <%= hidden_field_tag 'vacuum_id', Vacuum.find_by(name: vacuum_name).id %>
-      <span class='glyphicon glyphicon-shopping-cart'></span> Remove from Cart
+<% if @cart.empty? %>
+  <p>Your cart is empty.</p>
+<% else %>
+  <% @cart.each do |vacuum_name, vacuum_count| %>
+    <li>
+      <%= link_to vacuum_name, vacuum_path(Vacuum.find_by(name: vacuum_name)) %> - <%= vacuum_count %>  <%= form_tag "/users/#{session[:user_id]}/cart", method: :patch do %>
+      <%= button_tag type: 'submit', class: 'btn btn-danger btn-xs' do %>
+        <%= hidden_field_tag 'vacuum_id', Vacuum.find_by(name: vacuum_name).id %>
+        <span class='glyphicon glyphicon-shopping-cart'></span> Remove from Cart
+      <% end %>
     <% end %>
+    </li>
   <% end %>
-  </li>
 <% end %>
 
 

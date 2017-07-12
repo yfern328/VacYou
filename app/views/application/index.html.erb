@@ -37,9 +37,14 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">
-        <h1>Welcome to VacYou</h1>
-        <p>This is a site where you can purchase a wide variety of vacuum cleaners. We only stock high quality, top of the line vacuums that are sure to make you want to go vac yourself.</p>
-        <p><a class="btn btn-primary btn-lg" href="/vacuums" role="button">Browse our inventory &raquo;</a></p>
+        <div class="col-md-8">
+          <h1>Welcome to VacYou</h1>
+          <p>This is a site where you can purchase a wide variety of vacuum cleaners. We only stock high quality, top of the line vacuums that are sure to make you want to go vac yourself.</p>
+          <p><a class="btn btn-success btn-lg col-md-offset-4" href="/vacuums" role="button">Browse our inventory &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+          <%= image_tag 'VacYouLogo.png' %>
+        </div>
       </div>
     </div>
 
