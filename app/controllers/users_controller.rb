@@ -50,12 +50,12 @@ class UsersController < ApplicationController
     set_user
     @shopping_cart = ShoppingCart.new(user_id: @user.id, vacuum_id: params[:vacuum_id])
     @shopping_cart.save
+    redirect_to check_cart_path(@user)
   end
 
   def check_cart
-    @shopping_carts = ShoppingCart.all.select {|cart| cart.user_id == session[:user_id]}
-    @items_hash = Hash.new(0)
-    @shopping_carts.each {|cart| @items_hash[Vacuum.find(cart.vacuum_id).name] += 1 }
+    @total = ShoppingCart.total(session[:user_id])
+    @cart = ShoppingCart.display_cart(session[:user_id])
   end
 
     private

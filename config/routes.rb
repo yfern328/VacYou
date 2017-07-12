@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   get '/users/:id/cart', to: 'users#check_cart', as: "check_cart"
   post '/users/:id/cart', to: 'users#added_to_cart', as: "add_to_cart"
+  patch '/users/:id/cart', to: 'users#removed_from_cart', as: "remove_from_cart"
 
 
   resources :users, :reviews, :shopping_carts, :vacuums, :styles, :rentals

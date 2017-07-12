@@ -1,11 +1,17 @@
 class ShoppingCart < ApplicationRecord
   belongs_to :user
-  has_many :vacuums
+  belongs_to :vacuum
 
-  def total
-    # tax_rate = x
-    # vacuum_price.sum { |p| p.price * p.tax_rate }
-    # payments.sum(&:price)
+  def self.user_carts(session_user_id)
+    self.all.select { |cart| cart.user_id == session_user_id }
+  end
+
+  def self.total(session_user_id)
+    user_carts(session_user_id).map {|cart| cart.vacuum.purchase_price}.reduce(:+)
+  end
+
+  def self.display_cart(session_user_id)
+    user_carts(session_user_id).each_with_object(Hash.new(0)) {|cart, items_hash| items_hash[cart.vacuum.name] += 1 }
   end
 
 end
