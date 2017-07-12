@@ -7,16 +7,18 @@
   </style>
 </head>
 
+<h1>Add a Vacuum</h1>
+
 <%= form_for @vacuum do |f|%>
   <%= f.label :name %>
-  <%= f.text_field :name %>
+  <%= f.text_field :name %><br>
   <%= f.label :rental_price%>
-  <%= f.text_field :rental_price%>
+  <%= f.text_field :rental_price%><br>
   <%= f.label :purchase_price %>
-  <%= f.text_field :purchase_price %>
+  <%= f.text_field :purchase_price %><br>
   <%= f.label :rental_stock%>
-  <%= f.text_field :rental_stock%>
+  <%= f.text_field :rental_stock%><br>
   <%= f.label :purchase_stock%>
-  <%= f.text_field :purchase_stock%>
+  <%= f.text_field :purchase_stock%><br>
   <%= f.submit %>
 <% end %>
