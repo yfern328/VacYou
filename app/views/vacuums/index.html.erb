@@ -7,18 +7,23 @@
   </style>
 </head>
 
-<h1>Our Vacuums</h1>
+<div class="container" align="center">
+  <div class="align-middle">
 
+    <h1>Our Vacuums</h1>
 
-<% @vacuums.each do |vacuum|%>
-<h2> <%= link_to vacuum.name, vacuum_path(vacuum) %> </h2>
-Rental Price: <%= vacuum.rental_price %> <br>
-Purchase Price: <%= vacuum.purchase_price %> <br>
-Rental Stock: <%= vacuum.rental_stock %> <br>
-Purchase Stock: <%= vacuum.purchase_stock %>
-<% end %>
+    <% @vacuums.each do |vacuum|%>
+    <h2> <%= link_to vacuum.name, vacuum_path(vacuum) %> </h2>
+    Rental Price: <%= vacuum.rental_price %> <br>
+    Purchase Price: <%= vacuum.purchase_price %> <br>
+    Rental Stock: <%= vacuum.rental_stock %> <br>
+    Purchase Stock: <%= vacuum.purchase_stock %>
+    <% end %>
+
+  </div>
+</div>
 
 <center>
-  <h3> Don't see vacuum you want? </h3>
+  <h3> Don't see vacuum you want? </h3> <br>
+  <a class="btn btn-success btn-lg" href="/vacuums/new" role="button">Add A Vacuum &raquo;</a>
 </center>
-<p><a class="btn btn-success btn-lg col-md-offset-5" href="/vacuums/new" role="button">Add A Vacuum &raquo;</a></p>
