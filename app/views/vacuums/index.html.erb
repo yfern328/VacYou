@@ -14,8 +14,8 @@
 
     <% @vacuums.each do |vacuum|%>
     <h2> <%= link_to vacuum.name, vacuum_path(vacuum) %> </h2>
-    Rental Price: <%= vacuum.rental_price %> <br>
-    Purchase Price: <%= vacuum.purchase_price %> <br>
+    Rental Price: $<%= vacuum.rental_price %> <br>
+    Purchase Price: $<%= vacuum.purchase_price %> <br>
     Rental Stock: <%= vacuum.rental_stock %> <br>
     Purchase Stock: <%= vacuum.purchase_stock %>
     <% end %>

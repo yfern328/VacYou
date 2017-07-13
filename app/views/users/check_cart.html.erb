@@ -7,7 +7,7 @@
   </style>
 </head>
 
-<br><br><br><br><br>
+<br><br><br>
 
 <div class="container" align="center">
   <div class="align-middle">
@@ -47,8 +47,10 @@
     <h3> Total: $<%= @total %></h3>
 
     <% if !@cart.empty? %>
-      <%= link_to "Purchase Items", purchase_items_path(session[:user_id]), {method: :post, class: "btn btn-success"} %>
+      <%= link_to "Purchase Items", purchase_items_path(session[:user_id]), {method: :post, class: "btn btn-success"} %>  <br><br>
     <% end %>
+
+    <a class="btn btn-success" href="/vacuums" role="button">Continue Shopping &raquo;</a>
 
   </div>
 </div>
