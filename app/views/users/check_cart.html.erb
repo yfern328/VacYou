@@ -23,10 +23,12 @@
 
             <%= link_to vacuum_name, vacuum_path(Vacuum.find_by(name: vacuum_name)) %> - <%= vacuum_count %>
 
-            <%= form_tag "/users/#{session[:user_id]}/cart" do %>
-            <%= button_tag type: 'submit', class: 'btn btn-success btn-xs' do %>
-              <%= hidden_field_tag 'vacuum_id', Vacuum.find_by(name: vacuum_name).id %>
-              <span class='glyphicon glyphicon-shopping-cart'></span> +
+            <% if Vacuum.find_by(name: vacuum_name).purchase_stock > 0 %>
+              <%= form_tag "/users/#{session[:user_id]}/cart" do %>
+              <%= button_tag type: 'submit', class: 'btn btn-success btn-xs' do %>
+                <%= hidden_field_tag 'vacuum_id', Vacuum.find_by(name: vacuum_name).id %>
+                <span class='glyphicon glyphicon-shopping-cart'></span> +
+                <% end %>
               <% end %>
             <% end %>
 

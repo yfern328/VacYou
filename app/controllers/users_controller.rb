@@ -49,15 +49,23 @@ class UsersController < ApplicationController
 
   def added_to_cart
     set_user
+    #TODO seperate into two methods
+    @vacuum = Vacuum.find(params[:vacuum_id])
+    @vacuum.purchase_stock -= 1
+    @vacuum.save
+
     @shopping_cart = ShoppingCart.new(user_id: @user.id, vacuum_id: params[:vacuum_id])
     @shopping_cart.save
     redirect_to check_cart_path(@user)
   end
 
   def removed_from_cart
-    # byebug
+    #byebug
     set_user
-    @cart = ShoppingCart.find_by(vacuum_id: params[:vacuum_id])
+    @vacuum = Vacuum.find(params[:vacuum_id])
+    @vacuum.purchase_stock += 1
+    @vacuum.save
+    @cart = ShoppingCart.find_by(vacuum_id: params[:vacuum_id], is_purchased: false)
     @cart.destroy
     @carts = ShoppingCart.display_cart(session[:user_id])
     redirect_to check_cart_path(@user)

@@ -13,7 +13,7 @@ Purchase Price: <%= @vacuum.purchase_price %> <br>
 Rental Stock: <%= @vacuum.rental_stock %> <br>
 Purchase Stock: <%= @vacuum.purchase_stock %> <br>
 
-<% if !session[:user_id].nil? %>
+<% if !session[:user_id].nil? && @vacuum.purchase_stock > 0 %>
   <%= form_tag "/users/#{session[:user_id]}/cart" do%>
     <%= hidden_field_tag 'vacuum_id', @vacuum.id %>
     <%= button_tag type: 'submit', class: 'btn btn-success' do %>
