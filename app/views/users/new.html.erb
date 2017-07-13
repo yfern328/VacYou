@@ -7,11 +7,20 @@
   </style>
 </head>
 
+<br><br><br>
 
-<%=form_for :user, url: '/users' do |f|%>
-  Name: <%= f.text_field :name %>
-  Email: <%= f.text_field :email %>
-  Password: <%= f.password_field :password %>
-  Confirm Password: <%= f.password_field :password_confirmation %>
-  <%= f.submit %>
-<%end%>
+<div class="container" align="center">
+  <div class="align-middle">
+
+    <h1> Join & Vac Yourself! </h1> <br>
+
+    <%=form_for :user, url: '/users' do |f|%>
+      <h3> Name: <%= f.text_field :name %> </h3>
+      <h3> Email: <%= f.text_field :email %> </h3>
+      <h3> Password: <%= f.password_field :password %> </h3>
+      <h3> Confirm Password: <%= f.password_field :password_confirmation %> </h3> <br>
+      <%= f.submit "Create A Profile", class: "btn btn-success"%>
+    <%end%>
+
+  </div>
+</div>

@@ -10,21 +10,17 @@
 <div class="container" align="center">
   <div class="align-middle">
 
-<h1><%= "#{@user.name.titleize}'s profile" %></h1>
+    <h1><%= "#{@user.name.titleize}'s profile" %></h1>
 
+    <h2>Vacuums</h2>
 
-<!-- <h3> <%= collection_select(:vacuum, :user_id, Vacuum.all, :id, :name, prompt: "Choose a vacuum") %> </h3> -->
+      <% if !@cart_purchases.nil? && !@cart_purchases.empty? %>
+        <% @cart_purchases.each do |vacuum_name, vacuum_count|%>
+        <h4><%= link_to vacuum_name, Vacuum.find_by(name: vacuum_name) %>: <%= vacuum_count %> </h4>
+        <% end %>
+      <% else %>
+        <p> You have no purchased vacuums </p>
+      <% end %>
 
-<h2>Vacuums</h2>
-
-  <% if !@cart_purchases.nil? && !@cart_purchases.empty? %>
-    <% @cart_purchases.each do |vacuum_name, vacuum_count|%>
-    <h4><%= link_to vacuum_name, Vacuum.find_by(name: vacuum_name) %>: <%= vacuum_count %> </h4> 
-    <% end %>
-  <% else %>
-    <p> You have no purchased vacuums </p>
-  <% end %>
-
-</div>
-
+  </div>
 </div>
