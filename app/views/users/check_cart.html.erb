@@ -7,25 +7,46 @@
   </style>
 </head>
 
-<h1>Your Cart</h1>
+<br><br><br><br><br>
 
-<% if @cart.empty? %>
-  <p>Your cart is empty.</p>
-<% else %>
-  <% @cart.each do |vacuum_name, vacuum_count| %>
-    <li>
-      <%= link_to vacuum_name, vacuum_path(Vacuum.find_by(name: vacuum_name)) %> - <%= vacuum_count %>  <%= form_tag "/users/#{session[:user_id]}/cart", method: :patch do %>
-      <%= button_tag type: 'submit', class: 'btn btn-danger btn-xs' do %>
-        <%= hidden_field_tag 'vacuum_id', Vacuum.find_by(name: vacuum_name).id %>
-        <span class='glyphicon glyphicon-shopping-cart'></span> Remove from Cart
+<div class="container" align="center">
+  <div class="align-middle">
+
+    <h1>Your Cart</h1>
+
+    <% if @cart.empty? %>
+      <p>Your cart is empty.</p>
+    <% else %>
+      <% @cart.each do |vacuum_name, vacuum_count| %>
+        <p>
+          <h2>
+
+            <%= link_to vacuum_name, vacuum_path(Vacuum.find_by(name: vacuum_name)) %> - <%= vacuum_count %>
+
+            <%= form_tag "/users/#{session[:user_id]}/cart" do %>
+            <%= button_tag type: 'submit', class: 'btn btn-success btn-xs' do %>
+              <%= hidden_field_tag 'vacuum_id', Vacuum.find_by(name: vacuum_name).id %>
+              <span class='glyphicon glyphicon-shopping-cart'></span> +
+              <% end %>
+            <% end %>
+
+            <%= form_tag "/users/#{session[:user_id]}/cart", method: :patch do %>
+              <%= button_tag type: 'submit', class: 'btn btn-danger btn-xs' do %>
+                <%= hidden_field_tag 'vacuum_id', Vacuum.find_by(name: vacuum_name).id %>
+                <span class='glyphicon glyphicon-shopping-cart'></span> -
+              <% end %>
+            <% end %>
+
+          </h2>
+        </p>
       <% end %>
     <% end %>
-    </li>
-  <% end %>
-<% end %>
 
+    <h3> Total: $<%= @total %></h3>
 
+    <% if !@cart.empty? %>
+      <%= link_to "Purchase Items", purchase_items_path(session[:user_id]), {method: :post, class: "btn btn-success"} %>
+    <% end %>
 
-
-
-<p> Total: <%= @total %></p>
+  </div>
+</div>

@@ -25,6 +25,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @cart_purchases = ShoppingCart.display_purchased_items(session[:user_id])
     # @user = User.find(params[:id])
   end
 
@@ -65,6 +66,14 @@ class UsersController < ApplicationController
   def check_cart
     @total = ShoppingCart.total(session[:user_id])
     @cart = ShoppingCart.display_cart(session[:user_id])
+  end
+
+  def show_after_purchase
+    @cart_purchases = ShoppingCart.user_carts(session[:user_id]).map do |cart|
+      cart.is_purchased = true
+      cart.save
+    end
+    redirect_to user_path(session[:user_id])
   end
 
     private

@@ -7,6 +7,9 @@
   </style>
 </head>
 
+<div class="container" align="center">
+  <div class="align-middle">
+
 <h1><%= "#{@user.name.titleize}'s profile" %></h1>
 
 
@@ -14,12 +17,14 @@
 
 <h2>Vacuums</h2>
 
-<% if ShoppingCart.display_cart(@user.id).empty? && @user.id == session[:user_id] %>
-  <p>You have no vacuums...</p>
-<% elsif ShoppingCart.display_cart(@user.id).empty? %>
-  <p>This user has no vacuums...</p>
-<% else %>
-  <% ShoppingCart.display_cart(@user.id).each do |vacuum_name, vacuum_count| %>
-    <li><%= link_to vacuum_name, vacuum_path(Vacuum.find_by(name: vacuum_name)) %> - <%= vacuum_count %></li>
+  <% if !@cart_purchases.nil? && !@cart_purchases.empty? %>
+    <% @cart_purchases.each do |vacuum_name, vacuum_count|%>
+    <h4><%= link_to vacuum_name, Vacuum.find_by(name: vacuum_name) %>: <%= vacuum_count %> </h4> 
+    <% end %>
+  <% else %>
+    <p> You have no purchased vacuums </p>
   <% end %>
-<% end %>
+
+</div>
+
+</div>

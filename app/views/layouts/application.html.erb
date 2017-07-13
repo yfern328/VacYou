@@ -3,58 +3,95 @@
   <head>
     <title>VacYou</title>
     <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
   </head>
 
   <body>
     <% if current_user %>
       <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
+
           <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <button
+              type="button"
+              class="navbar-toggle collapsed"
+              data-toggle="collapse"
+              data-target="#navbar"
+              aria-expanded="false"
+              aria-controls="navbar"
+            >
               <span class="sr-only">Toggle navigation</span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="/">VacYou Corp.</a>
-            <a class="navbar-brand" href="/users/<%= "#{session[:user_id]}" %>"><%= "Hello, #{current_user.name.titleize}" %></a>
+            <a
+              class="navbar-brand" href="/users/<%= "#{session[:user_id]}" %>">
+              <%= "Hello, #{current_user.name.titleize}" %>
+            </a>
             <a class="navbar-brand"> | </a>
-            <a class="navbar-brand" href="/users/<%= "#{session[:user_id]}" %>/cart">View Cart</a>
+            <a
+              class="navbar-brand"
+              href="/users/<%= "#{session[:user_id]}" %>/cart">View Cart
+            </a>
           </div>
+
           <div id="navbar" class="navbar-collapse collapse">
-            <span class="align-middle"><%= link_to "Logout", '/logout', class: 'btn btn-success btn-lg' %></span>
+            <span
+              class="align-middle">
+                <%= link_to "Logout", '/logout', class: 'btn btn-success btn-lg' %>
+            </span>
           </div>
+
         </div>
       </nav>
+
     <% else %>
       <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
+
           <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <button
+              type="button"
+              class="navbar-toggle collapsed"
+              data-toggle="collapse"
+              data-target="#navbar"
+              aria-expanded="false"
+              aria-controls="navbar"
+            >
               <span class="sr-only">Toggle navigation</span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
+
             <a class="navbar-brand" href="/">VacYou Corp.</a>
           </div>
+
           <div id="navbar" class="navbar-collapse collapse">
             <%= form_tag '/login', align: "right" do %>
+
               <div class="form-group vcenter" align="right">
-                <span class="align-middle"><%= text_field_tag :email, nil, placeholder: 'Email' %></span>
+                <span
+                  class="align-middle">
+                    <%= text_field_tag :email, nil, placeholder: 'Email' %>
+                </span>
                 <%= password_field_tag :password, nil, placeholder: 'Password' %>
                 <%= submit_tag "Login", class: "btn btn-success" %>
               </div>
+
             <% end %>
+
           </div><!--/.navbar-collapse -->
+
         </div>
       </nav>
     <% end %>
+
   </br>
+
     <%= yield %>
   </body>
 </html>
