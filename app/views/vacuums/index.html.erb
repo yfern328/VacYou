@@ -23,7 +23,10 @@
   </div>
 </div>
 
-<center>
-  <h3> Don't see a vacuum you want? </h3> <br>
-  <a class="btn btn-success btn-lg" href="/vacuums/new" role="button">Add A Vacuum &raquo;</a>
-</center>
+
+<% if session[:user_id]%>
+  <center>
+    <h3> Don't see a vacuum you want? </h3> <br>
+    <a class="btn btn-success btn-lg" href="/vacuums/new" role="button">Add A Vacuum &raquo;</a>
+  </center>
+<% end %>

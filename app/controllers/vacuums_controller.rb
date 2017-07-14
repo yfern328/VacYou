@@ -13,11 +13,11 @@ class VacuumsController < ApplicationController
   def create
     @vacuum = Vacuum.new(vacuum_params)
     @vacuum.save
-    #byebug
     redirect_to vacuum_path(@vacuum)
   end
 
   def show
+    return redirect_to new_user_path if !logged_in
     @user = User.find(session[:user_id])
   end
 
