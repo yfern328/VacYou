@@ -15,7 +15,7 @@ class ShoppingCart < ApplicationRecord
   end
 
   def self.display_cart(session_user_id)
-    user_carts(session_user_id).each_with_object(Hash.new(0)) {|cart, items_hash| items_hash[cart.vacuum.name] += 1 }
+    user_carts(session_user_id).each_with_object(Hash.new(0)) {|cart, items_hash| items_hash[cart.vacuum.name] += 1 }.sort.to_h
   end
 
   def self.user_purchased_items(session_user_id)
@@ -23,7 +23,7 @@ class ShoppingCart < ApplicationRecord
   end
 
   def self.display_purchased_items(session_user_id)
-    user_purchased_items(session_user_id).each_with_object(Hash.new(0)) {|cart, items_hash| items_hash[cart.vacuum.name] += 1 }
+    user_purchased_items(session_user_id).each_with_object(Hash.new(0)) {|cart, items_hash| items_hash[cart.vacuum.name] += 1 }.sort.to_h
   end
 
 end

@@ -10,16 +10,29 @@
 <div class="container" align="center">
   <div class="align-middle">
 
-    <h1><%= "#{@user.name.titleize}'s profile" %></h1>
+    <br><br>
 
-    <h2>Vacuums</h2>
+    <h1><%= "#{@user.name.titleize}'s profile" %></h1> <br>
+
+    <h2>Vacuums</h2> <br>
 
       <% if !@cart_purchases.nil? && !@cart_purchases.empty? %>
         <% @cart_purchases.each do |vacuum_name, vacuum_count|%>
-        <h4><%= link_to vacuum_name, Vacuum.find_by(name: vacuum_name) %>: <%= vacuum_count %> </h4>
+        <h3>
+          <%= link_to vacuum_name, Vacuum.find_by(name: vacuum_name) %>: <%= vacuum_count %> <br><br>
+
+          <%= form_tag "/users/#{session[:user_id]}", method: :patch do %>
+          <%= button_tag type: 'submit', class: 'btn btn-danger btn-lrg' do %>
+            <%= hidden_field_tag 'vacuum_id', Vacuum.find_by(name: vacuum_name).id %>
+            <span class='glyphicon glyphicon-shopping-cart'></span> Return
+            <% end %>
+          <% end %>
+
+        </h3>
         <% end %>
       <% else %>
-        <p> You have no purchased vacuums </p>
+        <p> You have no purchased vacuums </p> <br>
+        <a class="btn btn-success" href="/vacuums" role="button">Start Shopping &raquo;</a>
       <% end %>
 
   </div>

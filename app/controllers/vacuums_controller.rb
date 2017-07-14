@@ -18,11 +18,10 @@ class VacuumsController < ApplicationController
   end
 
   def show
-    @vacuum = Vacuum.find(params[:id])
+    @user = User.find(session[:user_id])
   end
 
   def edit
-    @vacuum = Vacuum.find(params[:id])
   end
 
   def update

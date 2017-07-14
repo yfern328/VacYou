@@ -14,12 +14,17 @@ class UsersController < ApplicationController
   end
 
   def create
+
     @user = User.new(user_params)
+    @user.is_admin = true if check_admin_password
+
+    return redirect_to new_admin_path if params[:user][:admin_password] && !check_admin_password
+
     if @user.save
       session[:user_id] = @user.id
       redirect_to user_path(@user)
     else
-      redirect_to home_path
+      redirect_to signup_path
     end
   end
 
@@ -44,6 +49,12 @@ class UsersController < ApplicationController
   def delete
     @user.destroy
     redirect_to users_path
+  end
+
+  def choose_profile
+  end
+
+  def new_admin
   end
 
   def added_to_cart
@@ -83,10 +94,27 @@ class UsersController < ApplicationController
     redirect_to user_path(session[:user_id])
   end
 
+  def show_after_return
+    @cart = ShoppingCart.find_by(user_id: session[:user_id], vacuum_id: params[:vacuum_id])
+    @vacuum = Vacuum.find(params[:vacuum_id])
+    @vacuum.purchase_stock += 1
+    @vacuum.save
+    @cart.destroy
+    redirect_to user_path(session[:user_id])
+  end
+
     private
 
+    def check_admin_password
+      if params[:user][:admin_password]
+        params[:user][:admin_password] == "admin" ? true : false
+      else
+        false
+      end
+    end
+
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:name, :email, :password, :is_admin, :password_confirmation)
     end
 
     def set_user

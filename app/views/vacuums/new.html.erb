@@ -18,12 +18,12 @@
       <%= form_for @vacuum do |f|%>
       <%= f.label :name %>
       <%= f.text_field :name %> <br><br>
-      <!-- <%= f.label :rental_price%> -->
-      <!-- <%= f.text_field :rental_price%> <br><br> -->
+      <%= f.label :rental_price%>
+      <%= f.text_field :rental_price%> <br><br>
       <%= f.label :purchase_price %>
       <%= f.text_field :purchase_price %> <br><br>
-      <!-- <%= f.label :rental_stock%> -->
-      <!-- <%= f.text_field :rental_stock%> <br><br> -->
+      <%= f.label :rental_stock%>
+      <%= f.text_field :rental_stock%> <br><br>
       <%= f.label :purchase_stock%>
       <%= f.text_field :purchase_stock%> <br><br>
       <%= f.submit "Add Vacuum", class: "btn btn-success"%>

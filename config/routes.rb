@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   get '/logout' => 'sessions#destroy'
 
   get '/signup' => 'users#new'
+  get '/users/new_admin', to: 'users#new_admin', as: "new_admin"
+  get '/choose_profile', to: 'users#choose_profile', as: 'choose_profile'
   post '/users' => 'users#create'
 
   get '/400', to: 'errors#error_400', as: "bad_request"
@@ -18,6 +20,7 @@ Rails.application.routes.draw do
   post '/users/:id/cart', to: 'users#added_to_cart', as: "add_to_cart"
   patch '/users/:id/cart', to: 'users#removed_from_cart', as: "remove_from_cart"
   post '/users/:id', to: 'users#show_after_purchase', as: 'purchase_items'
+  patch '/users/:id', to: 'users#show_after_return', as: 'return_items'
 
 
   resources :users, :reviews, :shopping_carts, :vacuums, :styles, :rentals

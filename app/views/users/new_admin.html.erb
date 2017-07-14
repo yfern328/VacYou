@@ -12,12 +12,13 @@
 <div class="container" align="center">
   <div class="align-middle">
 
-    <h1> Join & Vac Yourself! </h1> <br>
+    <h1> Join & Vac Yourself As An Admin! </h1> <br>
 
     <h3>
       <%= form_for :user, url: '/users' do |f| %>
         Name: <%= f.text_field :name %> <br><br>
         Email: <%= f.text_field :email %> <br><br>
+        Admin Password: <%= f.password_field :admin_password %> <br><br>
         Password: <%= f.password_field :password %> <br><br>
         Confirm Password: <%= f.password_field :password_confirmation %>  <br><br>
         <%= f.submit "Create A Profile", class: "btn btn-success" %>

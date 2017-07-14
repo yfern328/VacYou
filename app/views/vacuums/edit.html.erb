@@ -7,16 +7,28 @@
   </style>
 </head>
 
-<% form_for @vacuum do |f|%>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.label :rental_price%>
-  <%= f.text_field :rental_price%>
-  <%= f.label :purchase_price %>
-  <%= f.text_field :purchase_price %>
-  <%= f.label :rental_stock%>
-  <%= f.text_field :rental_stock%>
-  <%= f.label :purchase_stock%>
-  <%= f.text_field :purchase_stock%>
-  <%= f.submit %>
-<% end %>
+<div class="container" align="center">
+  <div class="align-middle">
+
+    <br><br><br><br>
+
+    <h1> Edit A Vacuum </h1> <br>
+
+    <h3>
+      <%= form_for @vacuum do |f|%>
+      <%= f.label :name %>
+      <%= f.text_field :name %> <br><br>
+      <%= f.label :rental_price%>
+      <%= f.text_field :rental_price%> <br><br>
+      <%= f.label :purchase_price %>
+      <%= f.text_field :purchase_price %> <br><br>
+      <%= f.label :rental_stock%>
+      <%= f.text_field :rental_stock%> <br><br>
+      <%= f.label :purchase_stock%>
+      <%= f.text_field :purchase_stock%> <br><br>
+      <%= f.submit "Edit Vacuum", class: "btn btn-success"%>
+    <% end %>
+  </h3>
+
+  </div>
+</div>
