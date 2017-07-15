@@ -17,11 +17,16 @@ class VacuumsController < ApplicationController
   end
 
   def show
-    return redirect_to new_user_path if !logged_in
-    @user = User.find(session[:user_id])
+    return redirect_to signup_path if !logged_in
+    @user = current_user
   end
 
   def edit
+    if session[:user_id]
+      redirect_to vacuum_path(@vacuum) unless current_user.is_admin
+    else
+      redirect_to signup_path
+    end
   end
 
   def update
