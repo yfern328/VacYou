@@ -10,7 +10,7 @@
 <%= form_for @rental do |f|%>
   <%= f.label :vacuum_id%>
   <%= f.hidden_field :user_id, value: session[:user_id] %>
-  <%= f.collection_select(:vacuum_id, Vacuum.all, :id, :name) %>
+  <%= f.collection_select(:vacuum_id, Vacuum.all.select {|vacuum| vacuum.rental_stock > 0}, :id, :name) %>
   <%= f.label :rental_duration%>
   <%= f.select :rental_duration, options_for_select(1..14) %>
   <%= f.label :rental_condition%>

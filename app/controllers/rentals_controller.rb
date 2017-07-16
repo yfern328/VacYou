@@ -14,6 +14,9 @@ class RentalsController < ApplicationController
   def create
     @rental = Rental.new(rental_params)
     @rental.save
+    @vacuum = Vacuum.find(params[:rental][:vacuum_id])
+    @vacuum.rental_stock -= 1
+    @vacuum.save
     redirect_to rental_path(@rental)
   end
 

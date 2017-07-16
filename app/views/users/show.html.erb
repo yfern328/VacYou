@@ -36,5 +36,11 @@
         <a class="btn btn-success" href="/vacuums" role="button">Start Shopping &raquo;</a>
       <% end %>
 
+  <h3>Rentals:</h3>
+
+  <% @rentals.each do |rental|%>
+  <%= rental.vacuum.name %>
+  <% end %>
+
   </div>
 </div>
