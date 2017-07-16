@@ -24,9 +24,9 @@
 </div>
 
 
-<% if session[:user_id]%>
+<% if User.find(session[:user_id]).is_admin?%>
   <center>
-    <h3> Don't see a vacuum you want? </h3> <br>
+    <br>
     <a class="btn btn-success btn-lg" href="/vacuums/new" role="button">Add A Vacuum &raquo;</a>
   </center>
 <% end %>

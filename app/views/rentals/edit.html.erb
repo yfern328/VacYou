@@ -1,4 +1,13 @@
-<% form_for @rental do |f|%>
+<head>
+  <style>
+    body {
+      padding-top: 50px;
+      padding-bottom: 20px;
+    }
+  </style>
+</head>
+
+<%= form_for @rental do |f|%>
   <%= f.label :user_id%>
   <%= f.text_field :user_id%>
   <%= f.label :vacuum_id%>

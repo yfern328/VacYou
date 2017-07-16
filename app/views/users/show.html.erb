@@ -21,13 +21,14 @@
         <h3>
           <%= link_to vacuum_name, Vacuum.find_by(name: vacuum_name) %>: <%= vacuum_count %> <br><br>
 
-          <%= form_tag "/users/#{session[:user_id]}", method: :patch do %>
-          <%= button_tag type: 'submit', class: 'btn btn-danger btn-lrg' do %>
-            <%= hidden_field_tag 'vacuum_id', Vacuum.find_by(name: vacuum_name).id %>
-            <span class='glyphicon glyphicon-shopping-cart'></span> Return
+          <% if @user.id == session[:user_id] %>
+            <%= form_tag "/users/#{session[:user_id]}", method: :patch do %>
+            <%= button_tag type: 'submit', class: 'btn btn-danger btn-lrg' do %>
+              <%= hidden_field_tag 'vacuum_id', Vacuum.find_by(name: vacuum_name).id %>
+              <span class='glyphicon glyphicon-shopping-cart'></span> Return
+              <% end %>
             <% end %>
           <% end %>
-
         </h3>
         <% end %>
       <% else %>

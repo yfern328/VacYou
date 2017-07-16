@@ -29,7 +29,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @cart_purchases = ShoppingCart.display_purchased_items(session[:user_id])
+    @cart_purchases = ShoppingCart.display_purchased_items(@user.id)
     # @user = User.find(params[:id])
   end
 

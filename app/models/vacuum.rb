@@ -5,5 +5,5 @@ class Vacuum < ApplicationRecord
   has_many :users, through: :reviews
   has_many :shopping_carts
   has_many :users, through: :shopping_carts
-  #has_and_belongs_to_many :rentals
+  has_many :rentals
 end
