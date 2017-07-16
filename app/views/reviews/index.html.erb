@@ -7,8 +7,13 @@
   </style>
 </head>
 
+<h1>Reviews (Scored out of 5)</h1>
+
 <% @reviews.each do |review|%>
-<%= review.user_id %>
-<%= review.vacuum_id %>
-<%= review.emoji_rating %>
+<h3><%= review.user.name %></h6>
+<p><%= review.vacuum.name %></p>
+<p>Rating: </p>
+<% review.emoji_rating.to_i.times do %>
+  😂
+<% end %>
 <% end %>
