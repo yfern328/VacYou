@@ -12,14 +12,12 @@ class RentalsController < ApplicationController
   end
 
   def create
-    byebug
     @rental = Rental.new(rental_params)
-    @rental.save!
+    @rental.save
     redirect_to rental_path(@rental)
   end
 
   def show
-    set_rental
   end
 
   def edit
@@ -38,7 +36,7 @@ class RentalsController < ApplicationController
     private
 
     def rental_params
-      params.require(:rental).permit(:user_id, :vacuum_id, :rental_duration)
+      params.require(:rental).permit(:user_id, :vacuum_id, :rental_duration, :rental_condition, :rental_description)
     end
 
     def set_rental

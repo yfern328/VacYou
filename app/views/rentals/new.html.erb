@@ -8,11 +8,14 @@
 </head>
 
 <%= form_for @rental do |f|%>
-  <%= f.label :user_id%>
-  <%= f.text_field :user_id%>
   <%= f.label :vacuum_id%>
-  <%= f.text_field :vacuum_id%>
+  <%= f.hidden_field :user_id, value: session[:user_id] %>
+  <%= f.collection_select(:vacuum_id, Vacuum.all, :id, :name) %>
   <%= f.label :rental_duration%>
-  <%= f.text_field :rental_duration%>
+  <%= f.select :rental_duration, options_for_select(1..14) %>
+  <%= f.label :rental_condition%>
+  <%= f.select :rental_condition, options_for_select(1..10) %>
+  <%= f.label :rental_description%>
+  <%= f.text_field :rental_description%>
   <%= f.submit %>
 <% end %>

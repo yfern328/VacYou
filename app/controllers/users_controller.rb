@@ -30,6 +30,7 @@ class UsersController < ApplicationController
 
   def show
     @cart_purchases = ShoppingCart.display_purchased_items(@user.id)
+    @rentals = Rental.all.select {|rental| rental.user_id == session[:user_id]}
     # @user = User.find(params[:id])
   end
 

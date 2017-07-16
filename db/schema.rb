@@ -16,6 +16,8 @@ ActiveRecord::Schema.define(version: 20170710151541) do
     t.integer "user_id"
     t.integer "vacuum_id"
     t.integer "rental_duration"
+    t.integer "rental_condition"
+    t.string "rental_description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
