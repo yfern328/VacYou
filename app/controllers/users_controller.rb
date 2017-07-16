@@ -34,10 +34,14 @@ class UsersController < ApplicationController
   end
 
   def edit
-    if params[:id] == session[:user_id]
-      @user = User.find(params[:id])
+    if session[:user_id]
+      if (params[:id].to_i == session[:user_id]) || current_user.is_admin
+        @user = User.find(params[:id])
+      else
+        redirect_to bad_request_path
+      end
     else
-      redirect_to bad_request_path
+      redirect_to signup_path
     end
   end
 

@@ -1,5 +1,28 @@
-<% form_for @user do |f|%>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.submit %>
-<% end %>
+<head>
+  <style>
+    body {
+      padding-top: 50px;
+      padding-bottom: 20px;
+    }
+  </style>
+</head>
+
+<br><br><br>
+
+<div class="container" align="center">
+  <div class="align-middle">
+
+    <h1> Edit & Vac Yourself! </h1> <br>
+
+    <h3>
+      <%= form_for @user do |f| %>
+        Name: <%= f.text_field :name %> <br><br>
+        Email: <%= f.text_field :email %> <br><br>
+        Password: <%= f.password_field :password %> <br><br>
+        Confirm Password: <%= f.password_field :password_confirmation %>  <br><br>
+        <%= f.submit class: "btn btn-success" %>
+      <% end %>
+    </h3>
+
+  </div>
+</div>
