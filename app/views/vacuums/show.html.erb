@@ -46,11 +46,14 @@
 
   <div style="height:440px; margin-left; overflow: auto">
 
+
+    <% if !@average_rating.nil? %>
     <h3>
       Average Rating: <% @average_rating.times do %>
         😂
       <% end %>
     </h3> <br>
+    <% end %>
 
     <br><br>
 

@@ -20,8 +20,10 @@ class VacuumsController < ApplicationController
     return redirect_to signup_path if !logged_in
     @user = current_user
     @reviews = Review.all.select {|review| review.vacuum_id == @vacuum.id}
-    ratings = @reviews.map {|review| review.emoji_rating.to_i}
-    @average_rating = ratings.reduce(:+) / ratings.length
+    if Vacuum.all.empty?
+      ratings = @reviews.map {|review| review.emoji_rating.to_i}
+      @average_rating = ratings.reduce(:+) / ratings.length
+    end
   end
 
   def edit
