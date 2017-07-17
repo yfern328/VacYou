@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20170710151541) do
     t.string "email"
     t.boolean "is_admin", default: false
     t.string "password_digest"
+    t.integer "wallet", default: 500
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

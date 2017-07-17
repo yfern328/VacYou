@@ -12,9 +12,17 @@ class RentalsController < ApplicationController
   end
 
   def create
-    @rental = Rental.new(rental_params)
-    @rental.save
     @vacuum = Vacuum.find(params[:rental][:vacuum_id])
+    @rental = Rental.new(rental_params)
+
+    if (@vacuum.rental_price.to_i * @rental.rental_duration.to_i) < current_user.wallet
+      current_user.wallet -= (@vacuum.rental_price.to_i * @rental.rental_duration.to_i)
+      current_user.save
+    else
+      return redirect_to user_path(current_user)
+    end
+
+    @rental.save
     @vacuum.rental_stock -= 1
     @vacuum.save
     redirect_to rental_path(@rental)
@@ -34,6 +42,23 @@ class RentalsController < ApplicationController
   def delete
     @rental.destroy
     redirect_to rentals_path
+  end
+
+  def returned
+    @rental = Rental.find(params[:id].to_i)
+    @rental.is_returned = true
+    @rental.save
+
+    @vacuum = @rental.vacuum
+    @vacuum.rental_stock += 1
+    @vacuum.save
+
+    if !(@rental.created_at + @rental.rental_duration.days).future?
+      current_user.wallet -= 50
+      current_user.save
+    end
+
+    redirect_to user_path(session[:user_id])
   end
 
     private

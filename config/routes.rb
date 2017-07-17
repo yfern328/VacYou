@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   post '/users/:id', to: 'users#show_after_purchase', as: 'purchase_items'
   patch '/users/:id', to: 'users#show_after_return', as: 'return_items'
 
+  post '/rentals/:id/return', to: 'rentals#returned', as: 'return_rental'
+
 
   resources :users, :reviews, :shopping_carts, :vacuums, :styles, :rentals
   # resources :vacuums

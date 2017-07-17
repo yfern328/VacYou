@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_page
 
-  before_action :set_user, only: [:show, :edit, :update, :delete]
+  before_action :set_user, only: [:show, :edit, :update, :delete, :check_cart, :show_after_purchase, :show_after_return]
   #before_action :authorize
 
   def index
@@ -92,10 +92,16 @@ class UsersController < ApplicationController
   end
 
   def show_after_purchase
-    @cart_purchases = ShoppingCart.user_carts(session[:user_id]).map do |cart|
-      cart.is_purchased = true
-      cart.save
+
+    if @user.wallet >= params[:total].to_i
+      @cart_purchases = ShoppingCart.user_carts(session[:user_id]).map do |cart|
+        cart.is_purchased = true
+        cart.save
+      end
+      @user.wallet -= params[:total].to_i
+      @user.save
     end
+
     redirect_to user_path(session[:user_id])
   end
 
@@ -104,6 +110,8 @@ class UsersController < ApplicationController
     @vacuum = Vacuum.find(params[:vacuum_id])
     @vacuum.purchase_stock += 1
     @vacuum.save
+    @user.wallet += params[:vacuum_price].to_i
+    @user.save
     @cart.destroy
     redirect_to user_path(session[:user_id])
   end

@@ -13,6 +13,7 @@
     <br><br>
 
     <h1><%= "#{@user.name.titleize}'s profile" %></h1> <br>
+    <h1> Wallet: $<%= @user.wallet %> </h1>
 
     <h2>Vacuums</h2> <br>
 
@@ -25,6 +26,7 @@
             <%= form_tag "/users/#{session[:user_id]}", method: :patch do %>
             <%= button_tag type: 'submit', class: 'btn btn-danger btn-lrg' do %>
               <%= hidden_field_tag 'vacuum_id', Vacuum.find_by(name: vacuum_name).id %>
+              <%= hidden_field_tag 'vacuum_price', Vacuum.find_by(name: vacuum_name).purchase_price %>
               <span class='glyphicon glyphicon-shopping-cart'></span> Return
               <% end %>
             <% end %>
@@ -42,17 +44,15 @@
     <h4><%= rental.vacuum.name %></h4>
     Due by: <%= (rental.created_at + rental.rental_duration.days).to_formatted_s(:long_ordinal) %> <br>
       <% if @user.id == session[:user_id] %>
-        <%= form_tag "/rentals/#{rental.id}", method: :patch do %>
+        <%= form_tag return_rental_path(rental), method: :post do %>
         <%= button_tag type: 'submit', class: 'btn btn-danger btn-lrg' do %>
           <%= hidden_field_tag 'rental[is_returned]', true %>
-          <% rental.vacuum.rental_stock += 1 %>
           <span class='glyphicon glyphicon-shopping-cart'></span> Return
           <% end %>
         <% end %>
       <% end %>
     <% end %>
     <% end %>
-
 
 
   </div>

@@ -47,8 +47,15 @@
     <h3> Total: $<%= @total %></h3>
 
     <% if !@cart.empty? %>
-      <%= link_to "Purchase Items", purchase_items_path(session[:user_id]), {method: :post, class: "btn btn-success"} %>  <br><br>
+
+    <%= form_tag purchase_items_path(@user) do %>
+      <%= button_tag type: 'submit', class: 'btn btn-success' do %>
+        <%= hidden_field_tag 'total', @total %>
+        <span class='glyphicon glyphicon-shopping-cart'></span> Purchase Items
+      <% end %>
     <% end %>
+
+    <% end %> <br><br>
 
     <a class="btn btn-success" href="/vacuums" role="button">Continue Shopping &raquo;</a>
 
