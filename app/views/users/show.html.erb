@@ -42,8 +42,8 @@
   <% if !@rentals.empty? %>
     <% @rentals.each do |rental|%>
       <% if !rental.is_returned %>
-      <h4><%= rental.vacuum.name %></h4>
-      Due by: <%= (rental.created_at + rental.rental_duration.days).to_formatted_s(:long_ordinal) %> <br>
+      <h3> <%= link_to rental.vacuum.name, Rental.find(rental.id) %> </h3>
+      <h4>Due by: <%= (rental.created_at + rental.rental_duration.days).to_formatted_s(:long_ordinal) %> </h4> <br>
         <% if @user.id == session[:user_id] %>
           <%= form_tag return_rental_path(rental), method: :post do %>
             <%= button_tag type: 'submit', class: 'btn btn-danger btn-lrg' do %>

@@ -23,8 +23,7 @@
   </div>
 </div>
 
-
-<% if User.find(session[:user_id]).is_admin?%>
+<% if logged_in && current_user.is_admin%>
   <center>
     <br>
     <a class="btn btn-success btn-lg" href="/vacuums/new" role="button">Add A Vacuum &raquo;</a>
