@@ -12,7 +12,9 @@
 
     <br><br>
 
-    <h1> <%= @user.name %>'s Reviews (Scored out of 5)</h1>
+    <h1> <%= @user.name %>'s Reviews (Scored out of 5)</h1> <br>
+
+    <a class="btn btn-success" href="/reviews/new" role="button">Write A Review! &raquo;</a> <br>
 
     <% @reviews.each do |review|%>
       <h2><%= review.user.name %></h2>

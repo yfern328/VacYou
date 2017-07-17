@@ -14,6 +14,9 @@
 
     <h1> Reviews: </h1> <br>
 
+    <% if Review.get_all_user_vacuums(session[:user_id]).empty? %>
+      <h3> You have no rented or purchased vacuums to review </h3>
+    <% else %>
     <h3>
     <%= form_for @review do |f|%>
       <%= f.label :vacuum_id%>
@@ -24,6 +27,7 @@
       <%= f.submit class: "btn btn-success btn-lg"%>
     <% end %>
     </h3>
+    <% end %>
 
   </div>
 </div>
