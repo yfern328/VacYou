@@ -15,49 +15,65 @@
     <h1><%= "#{@user.name.titleize}'s profile" %></h1>
     <h2> Wallet: $<%= @user.wallet %> </h2> <br>
 
-    <h2> Vacuums: </h2> <br>
-
-    <% if !@cart_purchases.nil? && !@cart_purchases.empty? %>
-      <% @cart_purchases.each do |vacuum_name, vacuum_count|%>
-      <h3>
-        <%= link_to vacuum_name, Vacuum.find_by(name: vacuum_name) %>: <%= vacuum_count %> <br><br>
-        <% if @user.id == session[:user_id] %>
-          <%= form_tag "/users/#{session[:user_id]}", method: :patch do %>
-            <%= button_tag type: 'submit', class: 'btn btn-danger btn-lrg' do %>
-              <%= hidden_field_tag 'vacuum_id', Vacuum.find_by(name: vacuum_name).id %>
-              <%= hidden_field_tag 'vacuum_price', Vacuum.find_by(name: vacuum_name).purchase_price %>
-              <span class='glyphicon glyphicon-shopping-cart'></span> Return
-            <% end %>
-          <% end %>
-        <% end %>
-      </h3>
-      <% end %>
-    <% else %>
-      <p> You have no purchased vacuums </p> <br>
-      <a class="btn btn-success" href="/vacuums" role="button">Start Shopping &raquo;</a>
-    <% end %> <br><br>
-
-  <h2>Rentals:</h2> <br>
-
-  <% if !@rentals.empty? %>
-    <% @rentals.each do |rental|%>
-      <% if !rental.is_returned %>
-      <h3> <%= link_to rental.vacuum.name, Rental.find(rental.id) %> </h3>
-      <h4>Due by: <%= (rental.created_at + rental.rental_duration.days).to_formatted_s(:long_ordinal) %> </h4> <br>
-        <% if @user.id == session[:user_id] %>
-          <%= form_tag return_rental_path(rental), method: :post do %>
-            <%= button_tag type: 'submit', class: 'btn btn-danger btn-lrg' do %>
-            <%= hidden_field_tag 'rental[is_returned]', true %>
-            <span class='glyphicon glyphicon-shopping-cart'></span> Return
-            <% end %>
-          <% end %>
-        <% end %>
-      <% end %>
-    <% end %>
-  <% else %>
-  <p> You have no rented vacuums </p> <br>
-  <a class="btn btn-success" href="/rentals/new" role="button">Start Renting &raquo;</a>
-  <% end %>
-
   </div>
 </div>
+
+<br><br>
+
+<div class="container" align="center">
+  <div style="width: 100%; overflow: hidden;">
+
+    <div style="width: 600px; float: left; position: static">
+      <h2> Vacuums: </h2> <br>
+    </div>
+
+    <div style="width: 600px; height:440px; float: left; overflow: auto;">
+
+        <% if !@cart_purchases.nil? && !@cart_purchases.empty? %>
+          <% @cart_purchases.each do |vacuum_name, vacuum_count|%>
+          <h3>
+            <%= link_to vacuum_name, Vacuum.find_by(name: vacuum_name) %>: <%= vacuum_count %> <br><br>
+            <% if @user.id == session[:user_id] %>
+              <%= form_tag "/users/#{session[:user_id]}", method: :patch do %>
+                <%= button_tag type: 'submit', class: 'btn btn-danger btn-lrg' do %>
+                  <%= hidden_field_tag 'vacuum_id', Vacuum.find_by(name: vacuum_name).id %>
+                  <%= hidden_field_tag 'vacuum_price', Vacuum.find_by(name: vacuum_name).purchase_price %>
+                  <span class='glyphicon glyphicon-shopping-cart'></span> Return
+                <% end %>
+              <% end %>
+            <% end %>
+          </h3>
+          <% end %>
+        <% else %>
+          <p> You have no purchased vacuums </p> <br>
+          <a class="btn btn-success" href="/vacuums" role="button">Start Shopping &raquo;</a>
+        <% end %>
+    </div>
+
+    <div style="margin-left: 620px; position: static">
+      <h2>Rentals:</h2> <br>
+    </div>
+
+    <div style="margin-left: 620px">
+
+      <% if !@rentals.empty? %>
+        <% @rentals.each do |rental|%>
+          <% if !rental.is_returned %>
+          <h3> <%= link_to rental.vacuum.name, Rental.find(rental.id) %> </h3>
+          <h4>Due by: <%= (rental.created_at + rental.rental_duration.days).to_formatted_s(:long_ordinal) %> </h4> <br>
+            <% if @user.id == session[:user_id] %>
+              <%= form_tag return_rental_path(rental), method: :post do %>
+                <%= button_tag type: 'submit', class: 'btn btn-danger btn-lrg' do %>
+                <%= hidden_field_tag 'rental[is_returned]', true %>
+                <span class='glyphicon glyphicon-shopping-cart'></span> Return
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% else %>
+      <p> You have no rented vacuums </p> <br>
+      <a class="btn btn-success" href="/rentals/new" role="button">Start Renting &raquo;</a>
+      <% end %>
+
+    </div>
