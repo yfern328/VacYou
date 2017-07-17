@@ -7,13 +7,22 @@
   </style>
 </head>
 
-<h1>Reviews (Scored out of 5)</h1>
+<div class="container" align="center">
+  <div class="align-middle">
 
-<% @reviews.each do |review|%>
-<h3><%= review.user.name %></h6>
-<p><%= review.vacuum.name %></p>
-<p>Rating: </p>
-<% review.emoji_rating.to_i.times do %>
-  😂
-<% end %>
-<% end %>
+    <br><br>
+
+    <h1>Reviews (Scored out of 5)</h1>
+
+    <% @reviews.each do |review|%>
+      <h2><%= review.user.name %></h2>
+      <h3>
+        <%= review.vacuum.name %>
+        Rating: <% review.emoji_rating.to_i.times do %>
+          😂
+        <% end %>
+      </h3> <br>
+    <% end %>
+
+  </div>
+</div>

@@ -7,6 +7,21 @@
   </style>
 </head>
 
-<%= @review.user_id %>
-<%= @review.vacuum_id %>
-<%= @review.emoji_rating %>
+<div class="container" align="center">
+  <div class="align-middle">
+
+    <br><br>
+
+    <h1><%= @review.user.name %></h1>
+
+    <h3>
+      <%= @review.vacuum.name %>
+      <%= @review.emoji_rating %>
+      <%= @review.vacuum.name %>
+      Rating: <% @review.emoji_rating.to_i.times do %>
+        😂
+      <% end %>
+    </h3>
+
+  </div>
+</div>

@@ -25,7 +25,7 @@ class RentalsController < ApplicationController
     @rental.save
     @vacuum.rental_stock -= 1
     @vacuum.save
-    redirect_to rental_path(@rental)
+    redirect_to user_path(current_user)
   end
 
   def show
