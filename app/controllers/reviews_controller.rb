@@ -7,7 +7,11 @@ class ReviewsController < ApplicationController
   end
 
   def new
-    @review = Review.new
+    if session[:user_id]
+      @review = Review.new
+    else
+      redirect_to signup_path
+    end
   end
 
   def create

@@ -7,15 +7,27 @@
   </style>
 </head>
 
-<%= form_for @rental do |f|%>
-  <%= f.label :vacuum_id%>
-  <%= f.hidden_field :user_id, value: session[:user_id] %>
-  <%= f.collection_select(:vacuum_id, Vacuum.all.select {|vacuum| vacuum.rental_stock > 0}, :id, :name) %>
-  <%= f.label :rental_duration%>
-  <%= f.select :rental_duration, options_for_select(1..14) %>
-  <%= f.label :rental_condition%>
-  <%= f.select :rental_condition, options_for_select(1..10) %>
-  <%= f.label :rental_description%>
-  <%= f.text_field :rental_description%>
-  <%= f.submit %>
-<% end %>
+<div class="container" align="center">
+  <div class="align-middle">
+
+    <br><br>
+
+    <h1> Rentals: </h1> <br>
+
+    <h3>
+    <%= form_for @rental do |f|%>
+      <%= f.label :vacuum_id%>
+      <%= f.hidden_field :user_id, value: session[:user_id] %>
+      <%= f.collection_select(:vacuum_id, Vacuum.all.select {|vacuum| vacuum.rental_stock > 0}, :id, :name) %> <br><br>
+      <%= f.label :rental_duration%>
+      <%= f.select :rental_duration, options_for_select(1..14) %> <br><br>
+      <%= f.label :rental_condition%>
+      <%= f.select :rental_condition, options_for_select(1..10) %> <br><br>
+      <%= f.label :rental_description%>
+      <%= f.text_field :rental_description%> <br><br>
+      <%= f.submit class: "btn btn-success btn-lg"%>
+    <% end %>
+    </h3>
+
+  </div>
+</div>

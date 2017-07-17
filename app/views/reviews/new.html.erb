@@ -7,11 +7,23 @@
   </style>
 </head>
 
-<%= form_for @review do |f|%>
-  <%= f.label :vacuum_id%>
-  <%= f.hidden_field :user_id, value: session[:user_id] %>
-  <%= f.collection_select(:vacuum_id, Review.get_all_user_vacuums(session[:user_id]), :id, :name) %>
-  <%= f.label :emoji_rating%>
-  <%= f.select :emoji_rating, options_for_select(1..5) %>
-  <%= f.submit %>
-<% end %>
+<div class="container" align="center">
+  <div class="align-middle">
+
+    <br><br>
+
+    <h1> Reviews: </h1> <br>
+
+    <h3>
+    <%= form_for @review do |f|%>
+      <%= f.label :vacuum_id%>
+      <%= f.hidden_field :user_id, value: session[:user_id] %>
+      <%= f.collection_select(:vacuum_id, Review.get_all_user_vacuums(session[:user_id]), :id, :name) %> <br><br>
+      <%= f.label :emoji_rating%>
+      <%= f.select :emoji_rating, options_for_select(1..5) %> <br><br>
+      <%= f.submit class: "btn btn-success btn-lg"%>
+    <% end %>
+    </h3>
+
+  </div>
+</div>

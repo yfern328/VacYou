@@ -7,8 +7,26 @@
   </style>
 </head>
 
-<% @rentals.each do |rental|%>
-<%= rental.user_id %>
-<%= rental.name %>
-<%= rental.name %>
-<% end %>
+<div class="container" align="center">
+  <div class="align-middle">
+
+    <br><br>
+
+    <h1> Rentals: </h1> <br>
+
+
+    <% if @rentals.nil? %>
+       <h2> There are no rentals. </h2>
+      <% else %>
+      <% @rentals.each do |rental|%>
+        <h2> <%= rental.vacuum.name %> </h2>
+        <h4>
+          Rental Duration: <%= rental.rental_duration %> <br>
+          Rental Condition: <%= rental.rental_condition %> <br>
+          Rental Description: <%= rental.rental_description %> <br><br>
+        </h4>
+      <% end %>
+    <% end %>
+
+  </div>
+</div>
