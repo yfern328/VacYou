@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   patch '/users/:id', to: 'users#show_after_return', as: 'return_items'
 
   post '/rentals/:id/return', to: 'rentals#returned', as: 'return_rental'
+  get '/users/:id/reviews', to: 'users#reviews', as: 'user_reviews'
 
 
   resources :users, :reviews, :shopping_carts, :vacuums, :styles, :rentals

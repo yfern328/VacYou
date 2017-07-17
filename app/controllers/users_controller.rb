@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_page
 
-  before_action :set_user, only: [:show, :edit, :update, :delete, :check_cart, :show_after_purchase, :show_after_return]
+  before_action :set_user, only: [:show, :edit, :update, :delete, :check_cart, :show_after_purchase, :show_after_return, :reviews]
   #before_action :authorize
 
   def index
@@ -114,6 +114,10 @@ class UsersController < ApplicationController
     @user.save
     @cart.destroy
     redirect_to user_path(session[:user_id])
+  end
+
+  def reviews
+    @reviews = Review.all.select {|review| review.user_id == current_user.id}
   end
 
     private

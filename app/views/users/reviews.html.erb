@@ -1,0 +1,28 @@
+<head>
+  <style>
+    body {
+      padding-top: 50px;
+      padding-bottom: 20px;
+    }
+  </style>
+</head>
+
+<div class="container" align="center">
+  <div class="align-middle">
+
+    <br><br>
+
+    <h1> <%= @user.name %>'s Reviews (Scored out of 5)</h1>
+
+    <% @reviews.each do |review|%>
+      <h2><%= review.user.name %></h2>
+      <h3>
+        <%= review.vacuum.name %>
+        Rating: <% review.emoji_rating.to_i.times do %>
+          😂
+        <% end %>
+      </h3> <br>
+    <% end %>
+
+  </div>
+</div>
