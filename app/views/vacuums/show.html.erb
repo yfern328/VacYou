@@ -7,19 +7,25 @@
   </style>
 </head>
 
-<br><br><br><br><br>
+<br><br><br><br><br><br><br>
 
 <div class="container" align="center">
-  <div class="align-middle">
+  <div style="width: 100%; overflow: hidden;">
 
-    <h1>
-      <%= @vacuum.name %>
-      <% if @user.is_admin %>
-        <a class="btn btn-success btn-sm" href= "/vacuums/<%= @vacuum.id %>/edit" role="button">Edit &raquo;</a>
-      <% end %>
-    </h1>
+    <div style="width: 600px; float: left; position: static">
 
-    <br>
+      <h1>
+        <%= @vacuum.name %>
+        <% if @user.is_admin %>
+          <a class="btn btn-success btn-sm" href= "/vacuums/<%= @vacuum.id %>/edit" role="button">Edit &raquo;</a>
+        <% end %>
+      </h1>
+
+      <br>
+
+    </div>
+
+    <div style="width: 600px; height:440px; float: left; overflow: auto;">
 
     <h3>
     Rental Price: $<%= @vacuum.rental_price %> <br><br>
@@ -37,4 +43,23 @@
       <% end %>
     <% end %>
   </div>
+
+  <div style="height:440px; margin-left; overflow: auto">
+
+    <br><br>
+
+    <% @reviews.each do |review|%>
+      <h2><%= review.user.name %></h2>
+      <h3>
+        Rating: <% review.emoji_rating.to_i.times do %>
+          😂
+        <% end %>
+      </h3> <br>
+    <% end %> <br>
+
+    <a class="btn btn-success" href="/reviews" role="button">See All Reviews &raquo;</a>
+
+
+  </div>
+
 </div>

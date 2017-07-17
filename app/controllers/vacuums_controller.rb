@@ -19,6 +19,7 @@ class VacuumsController < ApplicationController
   def show
     return redirect_to signup_path if !logged_in
     @user = current_user
+    @reviews = Review.all.select {|review| review.vacuum_id == @vacuum.id}
   end
 
   def edit

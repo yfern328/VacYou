@@ -17,7 +17,7 @@
     <% @reviews.each do |review|%>
       <h2><%= review.user.name %></h2>
       <h3>
-        <%= review.vacuum.name %>
+        <%= review.vacuum.name %> <br>
         Rating: <% review.emoji_rating.to_i.times do %>
           😂
         <% end %>
