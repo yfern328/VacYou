@@ -27,9 +27,15 @@
               <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="/">VacYou Corp.</a>
+            <a class="navbar-brand"> | </a>
             <a
               class="navbar-brand" href="/users/<%= "#{session[:user_id]}" %>">
               <%= "Hello, #{current_user.name.titleize}" %>
+            </a>
+            <a class="navbar-brand"> | </a>
+            <a
+              class="navbar-brand"
+              href="/vacuums">Shop
             </a>
             <a class="navbar-brand"> | </a>
             <a
