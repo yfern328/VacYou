@@ -52,6 +52,7 @@
       Average Rating: <% @average_rating.times do %>
         😂
       <% end %>
+      <%= @average_rating.to_f.round(2) %>/5
     </h3> <br>
     <% end %>
 
