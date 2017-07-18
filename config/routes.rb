@@ -27,6 +27,7 @@ Rails.application.routes.draw do
 
 
   resources :users, :reviews, :shopping_carts, :vacuums, :styles, :rentals
+  resources :about, only: :index
   # resources :vacuums
   # resources :reviews
   # resources :shopping_carts
